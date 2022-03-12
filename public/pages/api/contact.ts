@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import Contact from '../../types/Contact'
+import Contact from '../../../types/Contact'
 
 import * as Yup from 'yup'
 const mailer = require('nodemailer');
@@ -24,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   let transporter = mailer.createTransport({
     host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
-    secure: true,
+    port: Number(process.env.MAIL_PORT),
+    secure: false,
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
@@ -52,4 +52,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     status: 'success',
     message: 'E-mail enviado com sucesso!'
   });
+
 }

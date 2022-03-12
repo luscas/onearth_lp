@@ -8,9 +8,8 @@ import classNames from 'classnames'
 import { Dialog, Transition } from '@headlessui/react'
 import InputMask from 'react-input-mask'
 
-import Contact from '../types/Contact'
-
-import fetch from 'unfetch'
+import Contact from '../../types/Contact'
+import api from '../../services/api'
 
 const Home: NextPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -36,23 +35,16 @@ const Home: NextPage = () => {
 
   const doContact = (data: Contact | any) => {
     setIsSending(true);
-
-    fetch('/api/contact', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    })
-    .then((_) => {
-      setIsOpen(true);
-      setIsSending(false);
-      reset();
-    })
-    .catch((err) => {
-      alert('Erro interno!');
-      setIsSending(false);
-    })
+    api.post('/contact', data)
+      .then((_) => {
+        setIsOpen(true);
+        setIsSending(false);
+        reset();
+      })
+      .catch((err) => {
+        alert('Erro interno!');
+        setIsSending(false);
+      })
   }
 
   return (
@@ -144,7 +136,7 @@ const Home: NextPage = () => {
 
               <div className="flex-grow">
                 <div className="label">Telefone</div>
-                <InputMask mask="(99) 9 9999-9999" type="tel" className={classNames('field', {'error': errors.tel})}  {...register('tel')} />
+                <InputMask mask="(99) 9 9999-9999" className={classNames('field', {'error': errors.tel})}  {...register('tel')} />
                 {errors.tel && <div className="field-error">{errors.tel.message}</div>}
               </div>
             </div>
