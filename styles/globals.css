@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: url(/img/pexels-sohail-na-807598.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.label {
+    @apply font-bold text-white mb-3;
+}
+
+.field {
+    @apply w-full bg-transparent py-4 px-6 rounded border border-white/25 focus:bg-white focus:bg-opacity-10 focus:border focus:border-[#179BD9] focus:ring-1 focus:ring-[#179BD9] focus:outline-none;
+}
+.field.error {
+    @apply border-red-500 focus:ring-red-500;
+}
+.field-error {
+    @apply text-white text-sm mt-1 text-red-500;
+}
+
+textarea.field {
+    resize: none;
+}
+
+.button {
+    @apply disabled:cursor-not-allowed disabled:bg-gray-400 py-4 px-6 font-bold text-white bg-[#179BD9] rounded;
+}
