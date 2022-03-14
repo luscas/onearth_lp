@@ -124,8 +124,8 @@ const Home: NextPage = () => {
 
         <section className="flex mt-14 flex-col xl:mt-0 xl:flex-row xl:justify-between xl:items-center xl:flex-grow">
           <div className="text-white">
-            <div className="xl:text-5xl text-4xl font-bold max-w-[528px]">
-              Ooops!<br/>
+            <div className="xl:text-5xl text-4xl font-bold max-w-[528px] leading-[56px!important]">
+              <span className="font-light">Ooops!</span><br/>
               Esta página encontra-se em construção
             </div>
 
